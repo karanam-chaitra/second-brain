@@ -1,19 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 
 const session = require("express-session");
 const app = express();
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "developer_second_brain",
-  password: "Rishi@#2004",
-  port: 5432
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT)
 });
-
 
 
 //configure cors - Allow the frontend to send requests with session cookies
